@@ -49,6 +49,7 @@
 .top {
   height: 60px;
 }
+
 .el-row {
   margin-bottom: 20px;
   &:last-child {
@@ -98,13 +99,11 @@ export default {
         {
           value: "extension",
           label: "品牌推广"
-        }
-        ,
+        },
         {
           value: "dynamic",
           label: "资讯动态"
-        }
-        ,
+        },
         {
           value: "about",
           label: "关于我们"
@@ -112,10 +111,10 @@ export default {
       ]
     };
   },
-  methods:{
-      handleChange(value) {
-        console.log(value);
-      }
+  methods: {
+    handleChange(value) {
+      console.log(value);
+    }
   },
   mounted() {
     console.log(window);

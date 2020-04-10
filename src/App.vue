@@ -11,7 +11,15 @@ export default {
 </script>
 
 <style>
- 
+ input {
+  border: 0 !important;
+}
+.el-cascader-menu{
+  min-width: 1.3rem;
+}
+.el-cascader-node{
+  border-bottom: 1px solid #e5e5e5;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
