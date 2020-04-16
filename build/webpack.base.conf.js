@@ -23,6 +23,9 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
+    alias: {
+      '@assets': path.resolve(__dirname, '../../assets'),
+  },
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': resolve('src'),

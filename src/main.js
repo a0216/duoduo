@@ -6,10 +6,15 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/display.css';
 import './assets/js/rem';
 import 'lib-flexible/flexible.js';
+import Swiper from 'swiper';
+import store from './store'
 
 
+import 'swiper/css/swiper.min.css';
+ 
 
 Vue.use(ElementUI);
+
 
 Vue.config.productionTip = false
 

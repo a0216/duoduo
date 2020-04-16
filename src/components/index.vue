@@ -1,24 +1,34 @@
 <template>
   <div class="hello">
     <el-container>
-      <topHeader></topHeader>
+      <!-- <topHeader></topHeader> -->
       <el-main>
-        <el-row :gutter="10">
-          <el-col :xs="8" :sm="6" :md="4" :lg="4" :xl="1">
-            <div class="grid-content bg-purple"></div>
-          </el-col>
-          <el-col :xs="4" :sm="6" :md="8" :lg="10" :xl="11">
-            <div class="grid-content bg-purple-light"></div>
-          </el-col>
-          <el-col :xs="4" :sm="6" :md="8" :lg="10" :xl="11">
-            <div class="grid-content bg-purple"></div>
-          </el-col>
-          <el-col :xs="8" :sm="6" :md="4" :lg="4" :xl="1">
-            <div class="grid-content bg-purple-light"></div>
-          </el-col>
-        </el-row>
+        <suspension :isPc="isPc"></suspension>
+
+        <div class="swiper-container" id="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="../assets/img/banner.jpg" alt />
+            </div>
+            <div class="swiper-slide">
+              <img src="../assets/img/banner1.jpg" alt />
+            </div>
+            <div class="swiper-slide">
+              <img src="../assets/img/banner2.jpg" alt />
+            </div>
+            <div class="swiper-slide">
+              <img src="../assets/img/banner3.jpg" alt />
+            </div>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+        <duoduo :isPc="isPc"></duoduo>
+        <advantage :isPc="isPc"></advantage>
+        <platform :isPc="isPc"></platform>
+        <friend :isPc="isPc"></friend>
       </el-main>
-      <el-footer>Footer</el-footer>
+      <el-footer style="height:auto;padding:0"></el-footer>
     </el-container>
   </div>
 </template>
@@ -26,15 +36,30 @@
 <script>
 import { post, fetch } from "../assets/js/axios";
 import topHeader from "./common/topHeader";
+import duoduo from "./common/duoduo";
+import suspension from "./common/sup";
+import platform from "./common/platform";
+import advantage from "./common/advantage";
+import friend from "./common/friend";
+import Swiper from "swiper";
+import "swiper/css/swiper.min.css";
+import store from "@/store";
+
 export default {
   name: "HelloWorld",
-  components: { topHeader },
+  components: { duoduo, platform, advantage, friend, suspension },
+  props: ["nowPath"],
   data() {
     return {
-      msg: "eeee"
+      msg: "eeee",
+      isPc: "true",
+      show2: true
     };
   },
   methods: {
+    hover: function() {
+      console.log(111);
+    },
     jiegu: function() {
       function foo(x, y, z) {
         console.log(x, y, z);
@@ -62,56 +87,57 @@ export default {
       // console.log(res);
     }
   },
-  mounted() {}
+  mounted() {
+    const _this = this;
+    console.log(window.location.href);
+    store.state.science == "pc" ? (_this.isPc = "true") : (_this.isPc = false);
+    console.log(_this.isPc);
+    var mySwiper = new Swiper("#swiper", {
+      autoplay: true,
+      loop: true,
+      prevButton: ".swiper-button-prev",
+      nextButton: ".swiper-button-next"
+    });
+
+    console.log(_this.$router.options.routes);
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang='scss'>
-.el-col {
-  border-radius: 4px;
+.swiper-button-prev,
+.swiper-button-next {
+  height: 44px;
+  width: 44px;
+  border-radius: 20px;
+  background: #fff;
+  // background-image: url("../assets/img/swiper_button.png");
 }
-.bg-purple-dark {
-  background: #99a9bf;
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 10px;
+  color: #171717;
 }
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
+
 .el-row {
   margin-bottom: 0.2rem;
   &:last-child {
     margin-bottom: 0;
   }
 }
-.el-col {
-  border-radius: 4px;
+#swiper {
+  height: 800px;
+  max-height: 820px;
+  // height: 820px;
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+  }
 }
-.el-header,
-.el-footer {
-  background-color: #b3c0d1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
 .el-main {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
 }
 </style>
