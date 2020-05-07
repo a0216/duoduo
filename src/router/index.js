@@ -5,6 +5,9 @@ import tiktok from '@/components/tiktok'
 import brand from '@/components/brand'
 import information from '@/components/information'
 import about from '@/components/about'
+import commpany from '@/components/commpany'
+import contact from '@/components/contact'
+import cooperation from '@/components/cooperation'
 
 Vue.use(Router)
 
@@ -34,6 +37,24 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: about
+    },
+    {
+      path: '/commpany',
+      name: 'commpany',
+      component: commpany
     }
+    ,
+    {
+      path: '/contact',
+      name: 'contact',
+      component: contact
+    }
+    ,
+    {
+      path: '/cooperation',
+      name: 'cooperation',
+      component: cooperation
+    }
+   
   ]
 })

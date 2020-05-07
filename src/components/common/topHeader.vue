@@ -5,19 +5,34 @@
         <el-col :span="4" class="hidden-sm-and-down">
           <div class="grid-content"></div>
         </el-col>
+
         <el-col :span="8">
           <div class="grid-content imgList">
             <div class="companyName">
-              <img src="../../assets/img/logo.png" alt />
+              <div class="zhongjing">
+                <img src="../../assets/img/logo.png" v-if="isPc" alt />
+                <img src="../../assets/img/logoa.png" class="little" v-else alt />
+              </div>
+              <div v-show="isIdx" ></div>
+              <div class="duoduo" v-show="isIdx">
+                <img src="../../assets/img/duoduoLogo.png" v-if="isPc" alt />
+                <img src="../../assets/img/logob.png" alt v-else class="little" />
+              </div>
             </div>
           </div>
         </el-col>
+
         <!-- 右侧下拉框 -->
         <el-col :span="8" class="hidden-md-and-up" :class="{fr:show}">
           <div class="grid-content">
             <div class="block">
-              <el-select v-model="value" placeholder="- 首页 -" :change="bindChange">
-                <el-option v-for="item in options" :key="item.label" :value="item.value"></el-option>
+              <el-select v-model="value" placeholder @change="bindChange">
+                <el-option
+                  v-for="item in options"
+                  :key="item.label"
+                  :label="item.name"
+                  :value="item.value"
+                ></el-option>
                 <!-- <el-option key="抖音学院" value="抖音学院"></el-option>
                 <el-option key="业务布局" value="业务布局"></el-option>
                 <el-option key="资讯动态" value="资讯动态"></el-option>
@@ -29,7 +44,7 @@
           </div>
         </el-col>
         <!-- //列表 -->
-        <el-col :span="8" class="hidden-sm-and-down">
+        <el-col :span="8" class="hidden-sm-and-down" style="padding-top:5px">
           <div class="rightList">
             <el-row :gutter="1">
               <el-col :span="Number(item.spacing)" v-for="item in topList" :key="item.index">
@@ -44,12 +59,12 @@
                   <el-select
                     v-model="values"
                     :placeholder="item.nameb"
-                    style="background:transparent"
+                    style="background:transparent;left:-15px"
                     v-show="item.index=='4'"
                   >
-                    <el-option key="1" value="公司简介"></el-option>
-                    <el-option key="2" value="联系方式"></el-option>
-                    <el-option key="3" value="招商合作"></el-option>
+                    <el-option key="1" label="公司简介" value="1"></el-option>
+                    <el-option key="2" label="联系方式" value="2"></el-option>
+                    <el-option key="3" label="招商合作" value="3"></el-option>
                   </el-select>
                   <!-- <span>-</span> -->
                   <!-- <router-link href="/" target>-&nbsp;首页&nbsp;-</router-link> -->
@@ -131,14 +146,42 @@
 .imgList {
   display: flex;
   flex-wrap: nowrap;
-
   .companyName {
     width: 283px;
-    height: 44px;
+    // height: 44px;
     margin-left: 18px;
+    display: flex;
     img {
       width: 283px;
       height: 44px;
+    }
+    div {
+      margin: auto;
+    }
+    .zhongjing {
+      + div {
+        // height: 30px;
+        width: 1px;
+        background: rgba(23, 23, 23, 1);
+        margin: 3% 0.15rem;
+        border: 1px solid #676464;
+      }
+      .little{
+        width: 50px;
+        height: 50px;
+      }
+    }
+    .duoduo {
+      width: auto;
+       .little{
+        width: 45px;
+        height: 45px;
+      }
+      img {
+        width: 228px;
+        float: right;
+        height: 40px;
+      }
     }
   }
 }
@@ -172,13 +215,18 @@
 }
 </style>
 <script>
+import store from "@/store";
+
 export default {
   name: "topHeader",
   commopents: [],
-
+  props: [],
   data() {
     return {
+      isIdx: true,
       nows: "0",
+      value: "首页",
+      isPc:true,
       topList: [
         {
           name: "/",
@@ -208,65 +256,86 @@ export default {
           name: "about",
           nameb: "关于",
           index: "4",
-          spacing: "6",
-          list: [
-            {
-              name: "公司简介",
-              indexs: 0
-            },
-            {
-              name: "联系方式",
-              indexs: 1
-            },
-            {
-              name: "招商合作",
-              indexs: 2
-            }
-          ]
+          spacing: "6"
         }
       ],
-      value: "",
       values: "",
       show: "true",
       options: [
         {
-          value: "抖音学院",
-          label: "抖音学院"
+          name: "首页",
+          label: "0",
+          value: "/"
         },
         {
-          value: "品牌推广",
-          label: "品牌推广"
+          name: "抖音学院",
+          value: "/tiktok"
         },
         {
-          value: "资讯动态",
-          label: "资讯动态"
+          name: "品牌推广",
+          value: "/brand"
         },
         {
-          value: "公司简介",
-          label: "公司简介"
+          name: "资讯动态",
+          value: "/information"
         },
         {
-          value: "联系方式",
-          label: "联系方式"
+          name: "公司简介",
+          value: "/commpany"
         },
         {
-          value: "招商合作",
-          label: "招商合作"
+          name: "联系方式",
+          value: "/contact"
+        },
+        {
+          name: "招商合作",
+          value: "/cooperation"
         }
       ]
     };
   },
+  watch: {
+    values: function(val) {
+      this.nows = "6";
+      if (val == "1") {
+        this.$router.push({ path: "/commpany" }).catch(data => {
+          val = "0";
+        });
+      } else if (val == "2") {
+        this.$router.push({ path: "/contact" }).catch(data => {
+          val = "0";
+        });
+      } else {
+        this.$router.push({ path: "/cooperation" }).catch(data => {
+          val = "0";
+        });
+      }
+    }
+  },
   methods: {
-    bindChange(value) {
-      console.log(value);
+    bindChange(val) {
+      console.log(this.value);
+      this.$router.push({ path: this.value });
+    },
+    getJobs(val) {
+      console.log(val);
     },
     changes(idx) {
       this.nows = idx;
+      if (idx == "0") {
+        this.isIdx = true;
+      } else {
+        this.isIdx = false;
+      }
+      console.log(idx);
+      // this.values=''
     }
   },
   mounted() {
     let _this = this;
-    console.log(_this.$router.options.routes);
+    // console.log(_this.$route.path);
+    store.state.science == "pc" ? (_this.isPc = "true") : (_this.isPc = false);
+
   }
 };
 </script>

@@ -3,9 +3,8 @@
     <el-container>
       <!-- <topHeader></topHeader> -->
       <el-main>
-        <suspension :isPc="isPc"></suspension>
-
-        <div class="swiper-container" id="swiper">
+        <suspension :isPc="isPc" :idx="idx"></suspension>
+        <!-- <div class="swiper-container" id="swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <img src="../assets/img/banner.jpg" alt />
@@ -22,7 +21,15 @@
           </div>
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
+        </div>-->
+        <div class="topImg" v-if="isPc">
+          <!-- <div class="download">
+            <img src="../assets/img/iphone.png" alt />
+            <img src="../assets/img/andorid.png" alt />
+          </div>
+          <img src="../assets/img/appCode.png" alt class="appCode" />-->
         </div>
+        <div class="topImgs" v-else></div>
         <duoduo :isPc="isPc"></duoduo>
         <advantage :isPc="isPc"></advantage>
         <platform :isPc="isPc"></platform>
@@ -37,13 +44,14 @@
 import { post, fetch } from "../assets/js/axios";
 import topHeader from "./common/topHeader";
 import duoduo from "./common/duoduo";
-import suspension from "./common/sup";
+import suspension from "./common/sups";
 import platform from "./common/platform";
 import advantage from "./common/advantage";
 import friend from "./common/friend";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import store from "@/store";
+import axios from "axios";
 
 export default {
   name: "HelloWorld",
@@ -53,7 +61,8 @@ export default {
     return {
       msg: "eeee",
       isPc: "true",
-      show2: true
+      show2: true,
+      idx: true
     };
   },
   methods: {
@@ -72,14 +81,30 @@ export default {
       let f = (x, y) => x + y;
       console.log(f(2, 3));
       let string2 = `Game start,${f(2)}`;
-      console.log(string2); // Game start,have fun!
 
-      // fetch("https://bird.ioliu.cn/netease", {
-      //   text: "速度集合框架",
-      //   type: "2",
-      //   key: "080c41d7e449f854c59fd5b9957e9f5d"
+      axios({
+        method: "post",
+        url: "https://codesfly.com/a.php",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: ""
+      })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+
+      // post("a.php", {
+      //   account: "123",
+      //   password: "2",
       // }).then(res => {
       //   console.log(res);
+      // }).catch(err=>{
+      //   console.log(err)
       // });
 
       let { a, b, ...rest } = { a: 10, b: 20, c: 30, d: 40 };
@@ -106,6 +131,40 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang='scss'>
+.topImg {
+  height: 820px;
+  background: url("../assets/img/banner.jpg") top left;
+  background-size: cover;
+  position: relative;
+  .download {
+    position: absolute;
+    top: 60%;
+    left: 20%;
+    width: 250px;
+    img {
+      width: 250px;
+      margin-bottom: 20px;
+      height: 60px;
+    }
+  }
+}
+.topImgs {
+  height: 420px;
+  background: url("../assets/img/bannerA.jpg") top left;
+  background-size: cover;
+  position: relative;
+  .download {
+    position: absolute;
+    top: 60%;
+    left: 20%;
+    width: 250px;
+    img {
+      width: 250px;
+      margin-bottom: 20px;
+      height: 60px;
+    }
+  }
+}
 .swiper-button-prev,
 .swiper-button-next {
   height: 44px;
@@ -129,7 +188,6 @@ export default {
 #swiper {
   height: 800px;
   max-height: 820px;
-  // height: 820px;
   .swiper-slide img {
     width: 100%;
     height: 100%;

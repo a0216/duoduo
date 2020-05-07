@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <topHeader :nowPath='nowPath' @pathCh='pathCh'></topHeader>
+    <topHeader :nowPath='nowPath' @pathCh='pathCh' :isIdx='isIdx'></topHeader>
     <router-view />
     <foot :isPc="isPc"></foot>
   </div>
@@ -17,7 +17,9 @@ export default {
   data() {
     return {
       isPc:true,
-      nowPath:'/'
+      nowPath:'/',
+      isIdx:true,
+      
     };
   },
  
@@ -31,13 +33,20 @@ export default {
     const _this = this;
     store.state.science == "pc" ? (_this.isPc = true) : (_this.isPc = false);
         console.log(this.$route.path);
-        console.log(_this);
-    console.log(this.$route.name);
+      if(_this.$route.path=='/'){
+      _this.isIdx=true
+    }else{
+      _this.isIdx=false
+
+    }
   }
 };
 </script>
 
 <style>
+button{
+  cursor: pointer;
+}
 input {
   border: 0 !important;
 }
@@ -69,6 +78,9 @@ input {
 }
 .fr {
   float: right;
+}
+.el-card{
+  border: 0;
 }
 ul,
 li {
