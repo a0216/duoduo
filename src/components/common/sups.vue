@@ -1,26 +1,27 @@
 <template>
-  <div class="suspension" v-if="isPc&&!coope">
+  <div class="suspension" v-if="isPc&&!coope&&popShow!='4'">
     <ul>
-      <li class="inThis" >
-        <img src="../../assets/img/susas.png" alt />
+      <li @click="changes(0)" :class="[idxShow=='0'||idxShow=='5'?'inThis':'']">
+        <img src="../../assets/img/susas.png" alt  v-if="idxShow=='0'||idxShow=='5'"/>
+        <img src="../../assets/img/susasb.png" alt v-else />
         <p>在线咨询</p>
-        <button >x</button>
+        <button  @click.stop="changes(5)"  v-if="idxShow=='0'||idxShow=='5'">x</button>
+        <button class="black"  @click.stop="changes(5)" v-else>x</button>
       </li>
-      <li class v-if="idx">
-        <img src="../../assets/img/susb.png" alt />
-        <p>售后服务</p>
-      </li>
-       <li class v-else>
-        <img src="../../assets/img/susb.png" alt />
+  
+      <li @click="changes(1)" :class="[idxShow=='1'?'inThis':'']">
+        <img src="../../assets/img/susb.png" alt v-if="idxShow!='1'"/>
+        <img src="../../assets/img/susba.png" alt v-else/>
         <p>立即报名</p>
       </li>
-      <li>
-        <img src="../../assets/img/susc.png" alt />
+      <li @click="changes(2)" :class="[idxShow=='2'?'inThis':'']">
+        <img src="../../assets/img/susc.png" alt  v-if="idxShow!='2'"/>
+        <img src="../../assets/img/suscb.png" alt v-else/>
         <p>留言</p>
       </li>
     </ul>
   </div>
- 
+
   <div class="suspension suspensionb" v-else-if="isPc&&coope">
     <ul>
       <li :class="[nowShow=='0'?'inThis':'']" @click="toCoop(0)">
@@ -39,7 +40,7 @@
 .suspension {
   position: fixed;
   right: 60px;
-  top: 700px;
+  top: 500px;
   z-index: 999;
   background: #fff;
   width: 160px;
@@ -47,6 +48,9 @@
   box-shadow: 0px 12px 20px 0px rgba(153, 153, 153, 0.4);
   border-radius: 5px;
   text-align: left;
+  .black{
+    color: #999;
+  }
   img {
     width: 16px;
     height: 16px;
@@ -57,7 +61,7 @@
     margin: 0;
     padding: 0;
   }
-  .inthis {
+  .inThis {
     background: #00abf5;
     color: #fff;
     position: relative;
@@ -74,24 +78,21 @@
     }
   }
   li {
+    cursor: pointer;
     height: 60px;
     color: #999;
     display: flex;
-    &:first-child {
-      background: #00abf5;
+
+    button {
+      background: transparent;
+      border: none;
+      width: 14px;
+      height: 14px;
       color: #fff;
-      position: relative;
-      button {
-        background: transparent;
-        border: none;
-        width: 14px;
-        height: 14px;
-        color: #fff;
-        font-size: 14px;
-        position: absolute;
-        top: 0.21rem;
-        right: 0.2rem;
-      }
+      font-size: 14px;
+      position: absolute;
+      top: 0.21rem;
+      right: 0.2rem;
     }
     p {
       display: inline-block;
@@ -123,15 +124,21 @@
 export default {
   data() {
     return {
-      nowShow: "1"
+      nowShow: "0",
+      idxShow: "0"
     };
   },
-  props: ["isPc", "coope","idx"],
+  props: ["isPc", "coope", "idx","popShow"],
   methods: {
     toCoop: function(val) {
       // console.log(val);
       this.nowShow = val;
       this.$emit("nowShow", val);
+    },
+    changes(val) {
+      this.idxShow = val;
+      this.$emit("idxShow", val);
+
     }
   }
 };

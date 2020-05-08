@@ -3,7 +3,8 @@
     <el-container>
       <!-- <topHeader></topHeader> -->
       <el-main>
-        <suspension :isPc="isPc" :idx="idx"></suspension>
+        <popup :isPc="isPc" :popShow="popShow"></popup>
+        <suspension :isPc="isPc" :idx="idx" @idxShow="idxShow" :popShow="popShow"></suspension>
         <!-- <div class="swiper-container" id="swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -46,6 +47,8 @@ import topHeader from "./common/topHeader";
 import duoduo from "./common/duoduo";
 import suspension from "./common/sups";
 import platform from "./common/platform";
+import popup from "./common/popup";
+
 import advantage from "./common/advantage";
 import friend from "./common/friend";
 import Swiper from "swiper";
@@ -55,17 +58,22 @@ import axios from "axios";
 
 export default {
   name: "HelloWorld",
-  components: { duoduo, platform, advantage, friend, suspension },
+  components: { duoduo, platform, advantage, friend, suspension, popup },
   props: ["nowPath"],
   data() {
     return {
       msg: "eeee",
       isPc: "true",
       show2: true,
-      idx: true
+      idx: true,
+      popShow:'5'
     };
   },
   methods: {
+    //判断弹出框
+     idxShow(val){
+      this.popShow=val;
+    },
     hover: function() {
       console.log(111);
     },

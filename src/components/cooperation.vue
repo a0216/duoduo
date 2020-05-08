@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-main>
-      <sups isPc="isPc" coope="coope" @nowShow="nowShow"></sups>
+      <sups :isPc="isPc" :coope="coope" @nowShow="nowShow"></sups>
       <div class="topImg">
         <img src="../assets/img/coop.png" alt />
       </div>

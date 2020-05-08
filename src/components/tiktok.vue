@@ -2,8 +2,8 @@
   <div class="hello">
     <el-container>
       <el-main>
-        <popup :isPc="isPc"></popup>
-        <suspension :isPc="isPc" :idx="idx"></suspension>
+        <popup :isPc="isPc" :popShow="popShow"></popup>
+        <suspension :isPc="isPc" :idx="idx" @idxShow="idxShow"  :popShow="popShow"></suspension>
         <div class="topImg">
           <img src="../assets/img/tiktok.png" alt />
         </div>
@@ -320,6 +320,7 @@ export default {
       nowIn: "1",
       remarks: "",
       idx: false,
+      popShow:'5',
       iptWidth: {
         width: "75%"
       }
@@ -339,6 +340,12 @@ export default {
     }
   },
   methods: {
+    //判断弹出框
+
+    idxShow(val){
+      this.popShow=val;
+    },
+    //视频播放获取视频
     videoCanPlay() {
       var duration = this.$refs.video.duration;
     },
