@@ -2,18 +2,33 @@
   <el-container>
     <el-main>
       <div class="topImg">
-        <img src="../assets/img/brand.png" alt />
+        <!-- <img src="../assets/img/brand.png" alt /> -->
       </div>
       <div class="fontBox" v-if="isPc">
         <div class="fonts">
           <p>2020年，河南熊孩儿网络科技有限公司与仲景国际集团达成合作，通过哆哆抢客平台对仲景集团生产的连花清瘟颗粒进行宣传推广和资源共享，大力扩宽销售渠道。</p>
         </div>
-        <div class="imgb">
-          <div class="triangle"></div>
+        <div class="imgb" @mouseover="toShow(showIs)" @mouseout="toShow(showIs)">
+          <!-- <div class="triangle"></div> -->
           <img src="../assets/img/banner2.jpg" alt />
+          <div class="hovers" v-show="showIs=='1'"></div>
+          <div class="notOpcity" v-show="showIs=='1'">
+            <h3>成分:</h3>
+            <p>
+              杏仁功效： 润肺，清积食，散滞
+              <br />板蓝根功效： 清热解毒，凉血，利咽
+              <br />连翘叶功效： 清热，解毒，散结，消肿​
+              <br />​金银花功效： 清热解毒、抗炎、补虚疗风
+              <br />鱼腥草功效： 清热解毒；排脓消痈；利尿通淋
+              <br />甘草功效： 清热解毒，润肺止咳，调和诸药性
+              <br />同时还富含薄荷、百合、藿香等十二味中草药，
+              <br />天然无添加，品质值得保障。
+              <br />
+            </p>
+          </div>
         </div>
         <div class="imga">
-          <div class="triangle"></div>
+          <!-- <div class="triangle"></div> -->
           <img src="../assets/img/banner1.jpg" alt />
         </div>
         <div class="codes">
@@ -27,11 +42,11 @@
           <p>2020年，河南熊孩儿网络科技有限公司与仲景国际集团达成合作，通过哆哆抢客平台对仲景集团生产的连花清瘟颗粒进行宣传推广和资源共享，大力扩宽销售渠道。</p>
         </div>
         <div class="imgb">
-          <div class="triangle"></div>
+          <!-- <div class="triangle"></div> -->
           <img src="../assets/img/banner2.jpg" alt />
         </div>
         <div class="imga">
-          <div class="triangle"></div>
+          <!-- <div class="triangle"></div> -->
           <img src="../assets/img/banner1.jpg" alt />
         </div>
         <div class="codes">
@@ -50,7 +65,7 @@
           <img src="../assets/img/banner.jpg" alt />
           <img src="../assets/img/banner.jpg" alt />
         </div>
-        <button>申请入驻</button>
+        <button @clcik="toSame()">申请入驻</button>
       </div>
 
       <div class="introduce introduceb" v-else>
@@ -64,7 +79,7 @@
           <img src="../assets/img/banner.jpg" alt />
           <img src="../assets/img/banner.jpg" alt />
         </div>
-        <button>申请入驻</button>
+        <button @clcik="toSame()">申请入驻</button>
       </div>
     </el-main>
   </el-container>
@@ -81,16 +96,27 @@ export default {
   data() {
     return {
       msg: "",
-      isPc: "true"
+      isPc: "true",
+      showIs: "0"
     };
   },
 
-  methods: {},
+  methods: {
+    toSame() {
+      this.$router.push("/cooperation");
+    },
+    toShow(val) {
+      if (val == 0) {
+        this.showIs = "1";
+      } else {
+        this.showIs = "0";
+      }
+    }
+  },
   created() {},
   mounted() {
     const _this = this;
-    console.log(store.state.science);
-    console.log(window.location.href);
+    // console.log(store.state.science);
     store.state.science == "pc" ? (_this.isPc = "true") : (_this.isPc = false);
   }
 };
@@ -101,10 +127,9 @@ export default {
 .topImg {
   height: 220px;
   width: 100%;
-  img {
-    height: 220px;
-    width: 100%;
-  }
+  margin-top: 60px;
+  background: url("../assets/img/brand.png") top left;
+  background-size: 100% 100%;
 }
 .fontBox {
   height: 1090px;
@@ -127,7 +152,7 @@ export default {
     }
   }
   .imga {
-    width: 580px;
+    width: 630px;
     height: 630px;
     position: absolute;
     top: 60px;
@@ -148,8 +173,8 @@ export default {
     }
   }
   .imgb {
-    width: 698px;
-    height: 660px;
+    width: 630px;
+    height: 630px;
     position: absolute;
     img {
       width: 100%;
@@ -165,6 +190,34 @@ export default {
       border-right: 30px solid #fff;
       border-bottom: 30px solid transparent;
       border-left: 30px solid transparent;
+    }
+    .hovers {
+      width: 630px;
+      height: 630px;
+      background: rgba(51, 51, 51, 1);
+      opacity: 0.8;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #fff;
+    }
+    .notOpcity {
+      position: absolute;
+      top: 0;
+      left: 0;
+      h3 {
+        padding-left: 130px;
+        padding-top: 130px;
+        text-align: left;
+        margin-bottom: 50px;
+        color: rgba(232, 232, 232, 1);
+      }
+      p {
+        padding-left: 130px;
+        text-align: left;
+        line-height: 38px;
+        color: rgba(232, 232, 232, 1);
+      }
     }
   }
   .codes {
@@ -258,18 +311,25 @@ export default {
     margin: 120px auto;
     color: #999;
     line-height: 1;
-  }
-}
-.introduceb{
-  padding: 3%;
-  width: 94%;
-  .imgList{
-    flex-wrap: wrap;
-    img{
-      margin: 5px auto ;
+    outline: none;
+    &:hover {
+      background: rgba(0, 171, 245, 1);
+      border-radius: 20px;
+      color: #fff;
+      border: 0;
     }
   }
-  button{
+}
+.introduceb {
+  padding: 3%;
+  width: 94%;
+  .imgList {
+    flex-wrap: wrap;
+    img {
+      margin: 5px auto;
+    }
+  }
+  button {
     margin: 60px auto;
   }
 }

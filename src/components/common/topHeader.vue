@@ -13,7 +13,7 @@
                 <img src="../../assets/img/logo.png" v-if="isPc" alt />
                 <img src="../../assets/img/logoa.png" class="little" v-else alt />
               </div>
-              <div v-show="isIdx" ></div>
+              <div v-show="isIdx"></div>
               <div class="duoduo" v-show="isIdx">
                 <img src="../../assets/img/duoduoLogo.png" v-if="isPc" alt />
                 <img src="../../assets/img/logob.png" alt v-else class="little" />
@@ -52,10 +52,10 @@
                   <!-- <span>-&nbsp;</span> -->
                   <router-link
                     :to="{ path:item.name}"
-                    :class="[item.index==nows?'showThis':'']"
+                    :class= "{'showThis':$route.path === item.name}"
                     v-show="item.index!='4'"
-                    @click.native="changes(item.index)"
-                  >{{item.nameb}}</router-link>
+                  >{{item.nameb}}
+                  </router-link>
                   <el-select
                     v-model="values"
                     :placeholder="item.nameb"
@@ -119,6 +119,9 @@
     padding-top: 20px;
     color: #999;
   }
+  position: fixed;
+  z-index: 99999;
+  top: 0;
 }
 .showThis {
   color: #fff !important;
@@ -166,14 +169,14 @@
         margin: 3% 0.15rem;
         border: 1px solid #676464;
       }
-      .little{
+      .little {
         width: 50px;
         height: 50px;
       }
     }
     .duoduo {
       width: auto;
-       .little{
+      .little {
         width: 45px;
         height: 45px;
       }
@@ -216,17 +219,17 @@
 </style>
 <script>
 import store from "@/store";
-
 export default {
   name: "topHeader",
   commopents: [],
   props: [],
   data() {
     return {
+      url: "",
       isIdx: true,
       nows: "0",
       value: "首页",
-      isPc:true,
+      isPc: true,
       topList: [
         {
           name: "/",
@@ -235,25 +238,25 @@ export default {
           spacing: "4"
         },
         {
-          name: "tiktok",
+          name: "/tiktok",
           nameb: "抖音学院",
           index: "1",
           spacing: "4"
         },
         {
-          name: "brand",
+          name: "/brand",
           nameb: "业务布局",
           index: "2",
           spacing: "4"
         },
         {
-          name: "information",
+          name: "/information",
           nameb: "资讯动态",
           index: "3",
           spacing: "4"
         },
         {
-          name: "about",
+          name: "/about",
           nameb: "关于",
           index: "4",
           spacing: "6"
@@ -295,6 +298,7 @@ export default {
     };
   },
   watch: {
+  
     values: function(val) {
       this.nows = "6";
       if (val == "1") {
@@ -320,22 +324,13 @@ export default {
     getJobs(val) {
       console.log(val);
     },
-    changes(idx) {
-      this.nows = idx;
-      if (idx == "0") {
-        this.isIdx = true;
-      } else {
-        this.isIdx = false;
-      }
-      console.log(idx);
-      // this.values=''
-    }
+  
   },
   mounted() {
     let _this = this;
-    // console.log(_this.$route.path);
+    // urls = "/" + _this.$route.path.split("/")[1];
+    console.log(this.url);
     store.state.science == "pc" ? (_this.isPc = "true") : (_this.isPc = false);
-
   }
 };
 </script>

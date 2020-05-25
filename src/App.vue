@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import "../src/assets/css/resize.css";
+import "./assets/css/resize.css";
 import topHeader from "./components/common/topHeader";
 import foot from "./components/common/footer";
 import store from "@/store";
@@ -26,7 +26,7 @@ export default {
   methods:{
     pathCh(path){
            return this.nowPath=path;
-           console.log(this.nowPath)
+          //  console.log(this.nowPath)
     }
   },
   mounted() {
@@ -39,51 +39,58 @@ export default {
       _this.isIdx=false
 
     }
+    this.$router.afterEach((to, from, next) => {
+        window.scrollTo(0, 0)
+    })
   }
 };
 </script>
 
-<style>
-button{
-  cursor: pointer;
-}
-input {
-  border: 0 !important;
-}
-.el-cascader-menu {
-  min-width: 1.3rem;
-}
-.el-input__inner {
-  text-align: center;
-  background: transparent;
-  color: #999;
-}
+<style lang="scss">
+ button{
+    cursor: pointer;
+  }
+  input {
+    border: 0 !important;
+  }
+  .el-cascader-menu {
+    min-width: 1.3rem;
+  }
+  .el-input__inner {
+    text-align: center;
+    background: transparent;
+    color: #999;
+  }
+  
+  .el-cascader-node {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  #app {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  .el-main {
+    padding: 0;
+    margin: 0;
+  }
+  .fl {
+    float: left;
+  }
+  .fr {
+    float: right;
+  }
+  .el-card{
+    border: 0;
+  }
+  ul,
+  li {
+    list-style: none;
+  }
+    h1,h2,h3,h4,h5{
+    font-weight: 400;
+  }
 
-.el-cascader-node {
-  border-bottom: 1px solid #e5e5e5;
-}
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-.el-main {
-  padding: 0;
-  margin: 0;
-}
-.fl {
-  float: left;
-}
-.fr {
-  float: right;
-}
-.el-card{
-  border: 0;
-}
-ul,
-li {
-  list-style: none;
-}
 </style>

@@ -4,7 +4,8 @@ import Vuex from 'vuex'
 //挂载Vuex
 Vue.use(Vuex)
 
-var science = "pc"
+var science = "pc";
+var hosts='https://zhongjingcha.yameijian.cn/'
 
 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
   science = 'ios'
@@ -18,7 +19,8 @@ if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|i
 const store = new Vuex.Store({
   state: {
     //存放的键值对就是所要管理的状态
-    science: science
+    science: science,
+    hosts:hosts
   }
 })
 

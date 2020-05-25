@@ -2,7 +2,7 @@
   <el-container>
     <el-main>
       <div class="topImg">
-        <img src="../assets/img/company.png" alt />
+        <!-- <img src="../assets/img/company.png" alt /> -->
       </div>
 
       <div class="information" v-if="isPc">
@@ -69,10 +69,9 @@ export default {
 .topImg {
   height: 220px;
   width: 100%;
-  img {
-    height: 220px;
-    width: 100%;
-  }
+  margin-top: 60px;
+  background: url("../assets/img/company.png") top left;
+  background-size: cover;
 }
 
 .information {

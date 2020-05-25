@@ -1,22 +1,22 @@
 <template>
-  <div class="suspension" v-if="isPc&&!coope&&popShow!='4'">
+  <div class="suspension" v-if="isPc&&!coope&&popShows!='4'">
     <ul>
-      <li @click="changes(0)" :class="[idxShow=='0'||idxShow=='5'?'inThis':'']">
-        <img src="../../assets/img/susas.png" alt  v-if="idxShow=='0'||idxShow=='5'"/>
+      <li @click="changes(0)" :class="{ 'inThis': idxShow=='0'||idxShow=='5'}">
+        <img src="../../assets/img/susas.png" alt v-if="idxShow=='0'||idxShow=='5'" />
         <img src="../../assets/img/susasb.png" alt v-else />
         <p>在线咨询</p>
-        <button  @click.stop="changes(5)"  v-if="idxShow=='0'||idxShow=='5'">x</button>
-        <button class="black"  @click.stop="changes(5)" v-else>x</button>
+        <!-- <button @click.stop="changes(5)" v-if="idxShow=='0'||idxShow=='5'">x</button> -->
+        <!-- <button class="black" @click.stop="changes(5)" v-else>x</button> -->
       </li>
-  
+
       <li @click="changes(1)" :class="[idxShow=='1'?'inThis':'']">
-        <img src="../../assets/img/susb.png" alt v-if="idxShow!='1'"/>
-        <img src="../../assets/img/susba.png" alt v-else/>
+        <img src="../../assets/img/susb.png" alt v-if="idxShow!='1'" />
+        <img src="../../assets/img/susba.png" alt v-else />
         <p>立即报名</p>
       </li>
       <li @click="changes(2)" :class="[idxShow=='2'?'inThis':'']">
-        <img src="../../assets/img/susc.png" alt  v-if="idxShow!='2'"/>
-        <img src="../../assets/img/suscb.png" alt v-else/>
+        <img src="../../assets/img/susc.png" alt v-if="idxShow!='2'" />
+        <img src="../../assets/img/suscb.png" alt v-else />
         <p>留言</p>
       </li>
     </ul>
@@ -48,7 +48,7 @@
   box-shadow: 0px 12px 20px 0px rgba(153, 153, 153, 0.4);
   border-radius: 5px;
   text-align: left;
-  .black{
+  .black {
     color: #999;
   }
   img {
@@ -104,13 +104,22 @@
   }
 }
 .suspensionb {
+  width: 200px;
+  height: 210px;
   right: 360px;
   top: 200px;
+  border-radius: 5px;
+  overflow: hidden;
   li {
+    height: 70px;
     cursor: pointer;
     p {
       text-align: center;
       width: 100%;
+      font-size: 26px;
+      font-family: Microsoft YaHei;
+      font-weight: 400;
+      line-height: 0.7;
     }
   }
   .inThis {
@@ -125,21 +134,25 @@ export default {
   data() {
     return {
       nowShow: "0",
-      idxShow: "0"
     };
   },
-  props: ["isPc", "coope", "idx","popShow"],
+  props: ["isPc", "coope", "idx", "popShows", "idxShow"],
+
   methods: {
     toCoop: function(val) {
-      // console.log(val);
       this.nowShow = val;
       this.$emit("nowShow", val);
     },
     changes(val) {
-      this.idxShow = val;
+      // console.log(this.popShows);
+      // console.log(this.idxShows);
+      // if (this.popShows == "5") {
+      //   this.idxShow = "7";
+      // }
+      // this.idxShow = val;
       this.$emit("idxShow", val);
-
     }
-  }
+  },
+  mounted() {}
 };
 </script>

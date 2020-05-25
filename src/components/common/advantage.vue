@@ -1,10 +1,11 @@
 <template>
   <div class="advantage" v-if="isPc">
+    <div class="white">
     <h2>核心优势</h2>
     <h4>CORE STRENGTHS</h4>
     <div class="twoBox">
       <div class="leftAdv anmtion" >
-        <img src="../../assets/img/advantagea.png" alt />
+        <img src="../../assets/img/advantageb.png" alt />
         <div>
           <h3>全民抢客</h3>
           <p>
@@ -21,13 +22,14 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
   <div class="advantageb" v-else>
     <h2>核心优势</h2>
     <h4>CORE STRENGTHS</h4>
     <div class="twoBox">
       <div class="leftAdv">
-        <img src="../../assets/img/advantagea.png" alt />
+        <img src="../../assets/img/advantageb.png" alt />
         <div>
           <h3>全民抢客</h3>
           <p>
@@ -49,15 +51,18 @@
 <style lang="scss" scoped>
 .advantage {
   height: 820px;
-  padding: 100px 360px 0 360px;
+  padding-top: 100px;
   background: url("../../assets/img/advbg.png");
   background-size: cover;
-  .twoBox {
+  .white{
+    width: 1200px;
+    margin:0 auto;
+    .twoBox {
     display: flex;
     flex-wrap: nowrap;
     justify-self: start;
     margin: 0 auto;
-    width: 60%;
+    width: 100%;
   }
   h2 {
     text-align: left;
@@ -107,8 +112,12 @@
     }
     img {
       height: 471px;
+        width: 580px;
+
     }
   }
+  }
+  
 }
 
 .advantageb {

@@ -5,17 +5,17 @@
         <div class="msgs">
           <h4>业务布局</h4>
           <p>
-            <span>电商业务</span>
-            <span>自媒体业务</span>
-            <span>品牌推广</span>
+          <span @click="tosame('/')">电商业务</span>
+            <span @click="tosame('/tiktok')">自媒体业务</span>
+            <span  @click="tosame('/brand')">品牌推广</span>
           </p>
         </div>
         <div class="msgs">
           <h4>公司信息</h4>
           <p>
-            <span>公司介绍</span>
-            <span>区域招商</span>
-            <span>品牌入驻</span>
+            <span @click="tosame('/commpany')">公司介绍</span>
+            <span @click="tosame('/cooperation')">区域招商</span>
+            <span @click="tosame('/cooperation')">品牌入驻</span>
           </p>
         </div>
         <div class="codes">
@@ -46,17 +46,17 @@
         <div class="msgs">
           <h4>业务布局</h4>
           <p>
-            <span>电商业务</span>
-            <span>自媒体业务</span>
-            <span>品牌推广</span>
+            <span @click="tosame('/')">电商业务</span>
+            <span @click="tosame('/tiktok')">自媒体业务</span>
+            <span  @click="tosame('/brand')">品牌推广</span>
           </p>
         </div>
         <div class="msgs">
           <h4>公司信息</h4>
           <p>
-            <span>公司介绍</span>
-            <span>区域招商</span>
-            <span>品牌入驻</span>
+            <span @click="tosame('/commpany')">公司介绍</span>
+            <span @click="tosame('/cooperation')">区域招商</span>
+            <span @click="tosame('/cooperation')">品牌入驻</span>
           </p>
         </div>
         <div class="codes">
@@ -89,7 +89,7 @@
   background: #171717;
   .footerTop {
     height: 320px;
-    padding: 0 360px;
+    width: 1200px;
     margin: 0 auto;
     display: flex;
     .codes {
@@ -106,7 +106,7 @@
       }
     }
     .msgs {
-        margin: 125px 116px;
+        margin: 125px auto;
       h4 {
         font-size: 26px;
         font-family: Microsoft YaHei;
@@ -123,6 +123,9 @@
         line-height: 10px;
         width: 263px;
         text-align: left;
+        span{
+          cursor: pointer;
+        }
       }
     }
   }
@@ -194,7 +197,9 @@ export default {
   },
   methods: {
     bindChange(value) {
-      console.log(value);
+    },
+    tosame(val){
+      this.$router.push(val)
     }
   },
   mounted() {

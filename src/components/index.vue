@@ -3,8 +3,8 @@
     <el-container>
       <!-- <topHeader></topHeader> -->
       <el-main>
-        <popup :isPc="isPc" :popShow="popShow"></popup>
-        <suspension :isPc="isPc" :idx="idx" @idxShow="idxShow" :popShow="popShow"></suspension>
+        <popup :isPc="isPc" :popShow="popShow" @pops="pops"></popup>
+        <suspension :isPc="isPc" :idx="idx" @idxShow="idxShow" :popShows="popShow" :idxShow="idxShows"></suspension>
         <!-- <div class="swiper-container" id="swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -66,59 +66,20 @@ export default {
       isPc: "true",
       show2: true,
       idx: true,
-      popShow:'5'
+      popShow: "5",
+      idxShows:"7"
     };
   },
   methods: {
     //判断弹出框
-     idxShow(val){
-      this.popShow=val;
+    idxShow(val) {
+      this.popShow = val;
+      this.idxShows=val
     },
-    hover: function() {
-      console.log(111);
+    pops(val) {
+      this.idxShows='7'
+      this.popShow = '5';
     },
-    jiegu: function() {
-      function foo(x, y, z) {
-        console.log(x, y, z);
-      }
-      // foo.apply(null, [1, 2, 3]); //在ES6之前我们这样使用数组作为函数参数调用。
-      foo(...[1, 2, 3]);
-      var mySet = new Set([1, 2, 3, 4, 4, 8, 5, 6, 8]);
-      let newArr = [...mySet]; // [1, 2, 3, 4]
-      console.log(newArr);
-      let f = (x, y) => x + y;
-      console.log(f(2, 3));
-      let string2 = `Game start,${f(2)}`;
-
-      axios({
-        method: "post",
-        url: "https://codesfly.com/a.php",
-        headers: {
-          "Content-Type": "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: ""
-      })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-
-      // post("a.php", {
-      //   account: "123",
-      //   password: "2",
-      // }).then(res => {
-      //   console.log(res);
-      // }).catch(err=>{
-      //   console.log(err)
-      // });
-
-      let { a, b, ...rest } = { a: 10, b: 20, c: 30, d: 40 };
-      console.log(rest);
-      // console.log(res);
-    }
   },
   mounted() {
     const _this = this;
@@ -144,6 +105,8 @@ export default {
   background: url("../assets/img/banner.jpg") top left;
   background-size: cover;
   position: relative;
+  margin-top: 60px;
+
   .download {
     position: absolute;
     top: 60%;

@@ -4,7 +4,7 @@ import index from '@/components/index'
 import tiktok from '@/components/tiktok'
 import brand from '@/components/brand'
 import information from '@/components/information'
-import about from '@/components/about'
+import tiktoks from '@/components/tiktoks'
 import commpany from '@/components/commpany'
 import contact from '@/components/contact'
 import cooperation from '@/components/cooperation'
@@ -34,10 +34,11 @@ export default new Router({
       component: information
     },
     {
-      path: '/about',
-      name: 'about',
-      component: about
+      path: '/tiktoks',
+      name: 'tiktoks',
+      component: tiktoks
     },
+    
     {
       path: '/commpany',
       name: 'commpany',

@@ -2,7 +2,7 @@ import axios from 'axios';
 // import Loading from 'utils/loading';
 
 axios.defaults.timeout = 10 * 1000;
-axios.defaults.baseURL = 'https://codesfly.com/';
+axios.defaults.baseURL = 'https://zhongjingcha.yameijian.cn/api/';
 axios.defaults.retry = 2; //重试次数
 axios.defaults.retryDelay = 1000; //重试延时
 axios.defaults.shouldRetry = error => true; //重试条件，默认只要是错误都需要重试

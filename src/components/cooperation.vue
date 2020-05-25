@@ -47,12 +47,11 @@
           </div>
         </div>
         <div class="fromIn">
-     
           <div class="iptBox">
             <label for>公司名称:</label>
-            <input type="text" :style="iptWidth" />
+            <input type="text" :style="iptWidth" v-model="name" />
             <label for>联系电话:</label>
-            <input type="text" :style="iptWidth" />
+            <input type="text" :style="iptWidth" v-model="phone" />
             <label for v-show="nowIn=='0'">定位人群:</label>
             <input
               type="text"
@@ -70,19 +69,18 @@
             placeholder="请输入内容"
             v-model="remarks"
           ></el-input>
-          <button v-if="nowIn=='2'">立即申请</button>
-          <button v-else>申请入驻</button>
+          <button v-if="nowIn=='2'" @click="joinIn(0)">立即申请</button>
+          <button v-else @click="joinIn(1)">申请入驻</button>
         </div>
       </div>
     </el-main>
   </el-container>
-</template>
+</template>``
 
 <script>
 import { post, fetch } from "../assets/js/axios";
 import store from "@/store";
 import sups from "./common/sups";
-
 export default {
   name: "brand",
   props: [""],
@@ -92,6 +90,7 @@ export default {
       msg: "",
       isPc: "true",
       company: "",
+      name: "",
       phone: "",
       remarks: "",
       coope: true,
@@ -101,18 +100,83 @@ export default {
       }
     };
   },
-
   methods: {
     nowShow: function(val) {
-      console.log(val);
       this.nowIn = val;
+    },
+    joinIn(val) {
+      if (this.name == "") {
+        this.$message({
+          offset: "100",
+          message: "请输入您的姓名！",
+          type: "warning"
+        });
+      } else if (!/^1[3456789]\d{9}$/.test(this.phone)) {
+        this.$message({
+          offset: "100",
+          message: "手机号码有误，请查证后在试！",
+          type: "warning"
+        });
+      } else {
+        if (val == 0) {
+          post("/public/apply", {
+            type: "1",
+            name: this.name,
+            phone: this.phone,
+            comment: this.remarks
+          })
+            .then(res => {
+              if (res.data) {
+                this.$message({
+                  offset: "100",
+                  message: "提交成功!",
+                  type: "success"
+                });
+               
+              } else {
+                this.$message({
+                  offset: "100",
+                  message: "请稍后再试！",
+                  type: "errot"
+                });
+              }
+            })
+            .catch(res => {});
+        } else {
+          post("/public/apply", {
+            type: "2",
+            name: this.name,
+            phone: this.phone,
+            comment: this.remarks
+          })
+            .then(res => {
+              // console.log(res);
+              if (res.data) {
+                this.$message({
+                  offset: "100",
+                  message: "提交成功!",
+                  type: "success"
+                });
+                this.name = "";
+                this.phone = "";
+                this.remarks = "";
+              } else {
+                this.$message({
+                  offset: "100",
+                  message: "请稍后再试！",
+                  type: "errot"
+                });
+              }
+            })
+            .catch(res => {});
+        }
+      }
     }
   },
   created() {},
   watch: {
     nowIn() {
       const _this = this;
-      console.log(_this.isPc)
       if (_this.isPc && _this.nowIn == "0") {
         _this.iptWidth = { width: "25%" };
       } else if (_this.isPc && _this.nowIn != "1||2") {
@@ -124,15 +188,14 @@ export default {
   },
   mounted() {
     const _this = this;
-    console.log(store.state.science);
     store.state.science == "pc" ? (_this.isPc = "true") : (_this.isPc = false);
-      if (_this.isPc && _this.nowIn == "0") {
-        _this.iptWidth = { width: "25%" };
-      } else if (_this.isPc && _this.nowIn != "1||2") {
-        _this.iptWidth = { width: "40%" };
-      } else {
-        _this.iptWidth = { width: "100%" };
-      }
+    if (_this.isPc && _this.nowIn == "0") {
+      _this.iptWidth = { width: "25%" };
+    } else if (_this.isPc && _this.nowIn != "1||2") {
+      _this.iptWidth = { width: "40%" };
+    } else {
+      _this.iptWidth = { width: "100%" };
+    }
   }
 };
 </script>
@@ -147,7 +210,6 @@ export default {
     width: 100%;
   }
 }
-
 .information {
   width: 65%;
   margin: 0 auto;

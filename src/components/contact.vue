@@ -1,16 +1,14 @@
 <template>
   <el-container>
     <el-main>
-      <div class="topImg">
-        <img src="../assets/img/conact.png" alt />
-      </div>
+      <div class="topImg"></div>
       <div class="information">
         <h2 v-show="isPc">联系方式</h2>
         <h2 v-show="!isPc" style="padding-left:30px">联系方式</h2>
         <h4 v-show="isPc">CONTACT</h4>
         <h4 v-show="!isPc" style="padding-left:30px">CONTACT</h4>
         <div class="company" v-show="isPc">
-          <div class="leftFont" >
+          <div class="leftFont">
             联系电话：400-0389-369
             <br />公司地址：河南省郑州市金水区学府广场B座
           </div>
@@ -75,10 +73,9 @@ export default {
 .topImg {
   height: 220px;
   width: 100%;
-  img {
-    height: 220px;
-    width: 100%;
-  }
+  margin-top: 60px;
+  background: url("../assets/img/conact.png") top left;
+  background-size: 100% 100%;
 }
 
 .information {

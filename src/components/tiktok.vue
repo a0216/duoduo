@@ -3,40 +3,42 @@
     <el-container>
       <el-main>
         <popup :isPc="isPc" :popShow="popShow"></popup>
-        <suspension :isPc="isPc" :idx="idx" @idxShow="idxShow"  :popShow="popShow"></suspension>
+        <suspension :isPc="isPc" :idx="idx" @idxShow="idxShow" :popShow="popShow"></suspension>
         <div class="topImg">
-          <img src="../assets/img/tiktok.png" alt />
+          <!-- <img src="../assets/img/tiktok.png" alt /> -->
         </div>
         <div class="advantage" v-if="isPc">
-          <h2>核心优势</h2>
-          <h4>CORE STRENGTHS</h4>
-          <div class="twoBox">
-            <div class="leftAdv anmtion">
-              <img src="../assets/img/idxa.png" alt />
-              <div>
-                <h3>私人定制</h3>
-                <p>根据实际情况定制专属学习计划</p>
+          <div class="white">
+            <h2>核心优势</h2>
+            <h4>CORE STRENGTHS</h4>
+            <div class="twoBox">
+              <div class="leftAdv anmtion">
+                <img src="../assets/img/idxa.png" alt />
+                <div>
+                  <h3>私人定制</h3>
+                  <p>根据实际情况定制专属学习计划</p>
+                </div>
               </div>
-            </div>
-            <div class="leftAdv anmtion">
-              <img src="../assets/img/idxb.png" alt />
-              <div>
-                <h3>随叫随到</h3>
-                <p>加入课程，即刻开始学习</p>
+              <div class="leftAdv anmtion">
+                <img src="../assets/img/idxb.png" alt />
+                <div>
+                  <h3>随叫随到</h3>
+                  <p>加入课程，即刻开始学习</p>
+                </div>
               </div>
-            </div>
-            <div class="leftAdv anmtion">
-              <img src="../assets/img/idxc.png" alt />
-              <div>
-                <h3>线下实操服务</h3>
-                <p>老师现场指导，让学员学有所得</p>
+              <div class="leftAdv anmtion">
+                <img src="../assets/img/idxc.png" alt />
+                <div>
+                  <h3>线下实操服务</h3>
+                  <p>老师现场指导，让学员学有所得</p>
+                </div>
               </div>
-            </div>
-            <div class="leftAdv">
-              <img src="../assets/img/idxd.png" alt />
-              <div>
-                <h3>问题专业诊断</h3>
-                <p>根据学员问题，进行专业诊断辅导</p>
+              <div class="leftAdv">
+                <img src="../assets/img/idxd.png" alt />
+                <div>
+                  <h3>问题专业诊断</h3>
+                  <p>根据学员问题，进行专业诊断辅导</p>
+                </div>
               </div>
             </div>
           </div>
@@ -84,7 +86,7 @@
               <img src="../assets/img/studente.png" alt />
               <img src="../assets/img/studentf.png" alt />
             </div>
-            <button>查看更多</button>
+            <button @click="tosame('/tiktoks')">查看更多</button>
           </div>
         </div>
         <div class="student studentb" v-else>
@@ -96,28 +98,30 @@
               <img src="../assets/img/studente.png" alt />
               <img src="../assets/img/studentf.png" alt />
             </div>
-            <button>查看更多</button>
+            <button @click="tosame('/tiktoks')">查看更多</button>
           </div>
         </div>
         <div class="operate" v-if="isPc">
-          <h2>运营推广</h2>
-          <h4>OPERATION PROMOTION</h4>
-          <div class="list">
-            <div>
-              <img src="../assets/img/operatea.png" alt />
-              <p>上门运营指导</p>
-            </div>
-            <div>
-              <img src="../assets/img/operateb.png" alt />
-              <p>全托付运营</p>
-            </div>
-            <div>
-              <img src="../assets/img/operatec.png" alt />
-              <p>全套运营方案</p>
-            </div>
-            <div>
-              <img src="../assets/img/operated.png" alt />
-              <p>线下长期学习</p>
+          <div class="white">
+            <h2>运营推广</h2>
+            <h4>OPERATION PROMOTION</h4>
+            <div class="list">
+              <div>
+                <img src="../assets/img/operatea.png" alt />
+                <p>上门运营指导</p>
+              </div>
+              <div>
+                <img src="../assets/img/operateb.png" alt />
+                <p>全托付运营</p>
+              </div>
+              <div>
+                <img src="../assets/img/operatec.png" alt />
+                <p>全套运营方案</p>
+              </div>
+              <div>
+                <img src="../assets/img/operated.png" alt />
+                <p>线下长期学习</p>
+              </div>
             </div>
           </div>
         </div>
@@ -177,32 +181,27 @@
           </div>
         </div>
         <div class="training" v-if="isPc">
-          <h2>特训营</h2>
-          <h4>SPECIAL TRAINING CAMP</h4>
-          <div class="camp">
-            <div>
-              账号定位
-              <br />图文账号制作
-              <br />抖音微信引流
-              <br />视屏内容提升
-            </div>
-            <div class="imgBox">
-              <img src="../assets/img/camp.png" alt />
-              <!-- <img src="../assets/img/camps.png" alt=""> -->
-              <p>引流变现班</p>
-              <P>了解更多&gt;</P>
-            </div>
-            <div class="imgBox">
-              <img src="../assets/img/campb.png" alt />
-              <!-- <img src="../assets/img/camps.png" alt=""> -->
-              <p>好物带货班</p>
-              <P>了解更多&gt;</P>
-            </div>
-            <div class="imgBox">
-              <img src="../assets/img/campc.png" alt />
-              <!-- <img src="../assets/img/camps.png" alt=""> -->
-              <p>商户运营服务</p>
-              <P>了解更多&gt;</P>
+          <div class="white">
+            <h2>特训营</h2>
+            <h4>SPECIAL TRAINING CAMP</h4>
+            <div class="camp">
+              <div
+                v-for="item in imgBoxlist"
+                :key="item.idx"
+                class="imgBox"
+                @mousemove="changeImg(item.idx)"
+                @mouseout="backImg(item.idx)"
+                @click="showMore(item.show,item.idx)"
+              >
+                <div v-if="item.show">
+                  <img :src="item.imga" alt />
+                  <p>{{item.fonts}}</p>
+                  <p @click.stop="showMore(item.show,item.idx)">查看更多&gt;</p>
+                </div>
+                <div class="fonts" v-else>
+                  <p v-for="font in item.fontsList" :key="font.idx">{{font.name}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -273,11 +272,11 @@
           <div class="iptBox">
             <div>
               <label for>名称:</label>
-              <input type="text" :style="iptWidth" class="fr" />
+              <input type="text" :style="iptWidth" v-model="name" />
             </div>
             <div>
               <label for>联系电话:</label>
-              <input type="text" :style="iptWidth" class="fr" />
+              <input type="text" :style="iptWidth" v-model="phone" />
             </div>
           </div>
           <div class="textar">
@@ -285,14 +284,14 @@
             <el-input
               type="textarea"
               :rows="10"
-              style="width:75%;
-    float: right;"
+              style="width:96%;
+              float: right;"
               placeholder="请输入内容"
               v-model="remarks"
             ></el-input>
           </div>
           <div class="btnBox">
-            <button>提交</button>
+            <button @click="submitIt">提交</button>
           </div>
         </div>
       </el-main>
@@ -313,6 +312,8 @@ export default {
   props: ["nowPath"],
   data() {
     return {
+      name: "",
+      phone: "",
       msg: "eeee",
       isPc: "true",
       vcIsPlay: false,
@@ -320,10 +321,118 @@ export default {
       nowIn: "1",
       remarks: "",
       idx: false,
-      popShow:'5',
+      popShow: "5",
+      shows: "0",
+      nowIs: "0",
+      idxIs: "0",
       iptWidth: {
-        width: "75%"
-      }
+        width: "87%"
+      },
+      imgBoxlist: [
+        {
+          imgs: require("../assets/img/camp.png"),
+          imgSrc: require("../assets/img/camps.png"),
+          fonts: "热门爆破班",
+          imga: require("../assets/img/camp.png"),
+          idx: 0,
+          show: true,
+          fontsList: [
+            {
+              name: "账号定位"
+            },
+            {
+              name: "图文账号制作"
+            },
+            {
+              name: "抖音微信引流"
+            },
+            {
+              name: "视屏内容提升"
+            }
+          ]
+        },
+        {
+          imgs: require("../assets/img/campd.png"),
+          imgSrc: require("../assets/img/campds.png"),
+          fonts: "引流变现班",
+          imga: require("../assets/img/campd.png"),
+          idx: 1,
+          show: true,
+          fontsList: [
+            {
+              name: "账号定位"
+            },
+            {
+              name: "图文账号制作"
+            },
+            {
+              name: "抖音微信引流"
+            },
+            {
+              name: "视屏内容提升"
+            }
+          ]
+        },
+        {
+          imgs: require("../assets/img/campb.png"),
+          imgSrc: require("../assets/img/campbs.png"),
+          fonts: "好物带货班",
+          imga: require("../assets/img/campb.png"),
+          idx: 2,
+          show: true,
+          fontsList: [
+            {
+              name: "账号定位"
+            },
+            {
+              name: "无人直播技术"
+            },
+            {
+              name: "引流变现"
+            },
+            {
+              name: "多种玩法教学"
+            },
+            {
+              name: "（矩阵、无货源带货、心里测评等）"
+            },
+            {
+              name: "剪映剪辑训练"
+            }
+          ]
+        },
+        {
+          imgs: require("../assets/img/campc.png"),
+          imgSrc: require("../assets/img/campcs.png"),
+          fonts: "商户运营服务",
+          imga: require("../assets/img/campc.png"),
+          idx: 3,
+          show: true,
+          fontsList: [
+            {
+              name: "产品定位"
+            },
+            {
+              name: "活动策划"
+            },
+            {
+              name: "爆品分析"
+            },
+            {
+              name: "辅导小店开通"
+            },
+            {
+              name: "短视频热门运营"
+            },
+            {
+              name: "电商运营方案落地"
+            },
+            {
+              name: "社群运营方案落地"
+            }
+          ]
+        }
+      ]
     };
   },
   watch: {
@@ -340,10 +449,71 @@ export default {
     }
   },
   methods: {
+    // 留言
+    submitIt() {
+      if (this.name == "") {
+        this.$message({
+          offset: "100",
+          message: "请输入您的姓名！",
+          type: "warning"
+        });
+      } else if (!/^1[3456789]\d{9}$/.test(this.phone)) {
+        this.$message({
+          offset: "100",
+          message: "手机号码有误，请查证后在试！",
+          type: "warning"
+        });
+      } else {
+        post("/public/apply", {
+          type: "3",
+          name: this.name,
+          phone: this.phone,
+          comment: this.remarks
+        })
+          .then(res => {
+            console.log(res);
+            if (res.data) {
+              this.$message({
+                offset: "100",
+                message: "提交成功，稍后会有相关人员联系您",
+                type: "success"
+              });
+            } else {
+              this.$message({
+                offset: "100",
+                message: "请稍后再试！",
+                type: "errot"
+              });
+            }
+          })
+          .catch(res => {});
+      }
+    },
     //判断弹出框
-
-    idxShow(val){
-      this.popShow=val;
+    changeImg(val) {
+      for (let i in this.imgBoxlist) {
+        this.imgBoxlist[val].imga = this.imgBoxlist[val].imgSrc;
+      }
+    },
+    backImg(val) {
+      for (let i in this.imgBoxlist) {
+        this.imgBoxlist[i].imga = this.imgBoxlist[i].imgs;
+      }
+    },
+    showMore(val, idx) {
+      for (let i in this.imgBoxlist) {
+        if (i == idx) {
+          this.imgBoxlist[i].show = !this.imgBoxlist[i].show;
+        }
+      }
+      // this.shows = 1;
+      console.log(val);
+    },
+    idxShow(val) {
+      this.popShow = val;
+    },
+    tosame(val) {
+      this.$router.push(val);
     },
     //视频播放获取视频
     videoCanPlay() {
@@ -382,18 +552,19 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.ceshi {
-  text-align: center;
-  letter-spacing: 18px;
+.white {
+  width: 1200px;
+  margin: 0 auto;
 }
+
 .topImg {
+  margin-top: 60px;
   height: 220px;
   width: 100%;
-  img {
-    height: 220px;
-    width: 100%;
-  }
+  background: url("../assets/img/tiktok.png") top left;
+  background-size: 100% 100%;
 }
+
 .advantage {
   height: 620px;
   width: 80%;
@@ -404,7 +575,6 @@ export default {
     flex-wrap: nowrap;
     justify-self: start;
     margin: 0 auto;
-    width: 70%;
   }
 
   h2 {
@@ -460,20 +630,23 @@ export default {
   }
 }
 .training {
-  width: 80%;
   margin: 60px auto 120px auto;
   .camp {
     display: flex;
     flex-wrap: nowrap;
+    .fonts {
+      color: #999;
+      line-height: 30px;
+    }
     div {
-      &:first-child {
-        color: #999;
-        line-height: 30px;
-      }
       margin: auto;
     }
   }
   .imgBox {
+    height: 260px;
+    &:first-child {
+      border-left: none;
+    }
     border-left: 1px solid #999;
     width: 350px;
     text-align: center;
@@ -489,6 +662,12 @@ export default {
       color: rgba(153, 153, 153, 1);
       line-height: 37px;
       cursor: pointer;
+    }
+    .fonts {
+      p {
+        margin-top: 0;
+        margin-bottom: 6px;
+      }
     }
   }
   h2 {
@@ -547,7 +726,7 @@ export default {
   height: 836px;
   width: 100%;
   .content {
-    width: 80%;
+    width: 1200px;
     margin: 0 auto;
   }
   h2 {
@@ -600,8 +779,8 @@ export default {
 .operate {
   height: 628px;
   padding-top: 120px;
-  width: 80%;
   margin: 0 auto;
+
   h2 {
     text-align: left;
     color: #333;
@@ -709,15 +888,29 @@ export default {
   }
 }
 .team {
+  width: 1200px;
+  margin: 0 auto;
   height: 460px;
   display: flex;
   flex-wrap: wrap;
   div {
+    &:first-child {
+      margin-left: 0;
+      h2 {
+        font-family: Microsoft YaHei;
+        font-weight: bold;
+        color: rgba(51, 51, 51, 1);
+        line-height: 72px;
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+    }
     margin: auto;
   }
 }
 .fromIn {
-  width: 80%;
+  width: 1200px;
   margin: 60px auto;
   h2 {
     margin-bottom: 80px;
@@ -727,32 +920,44 @@ export default {
       position: absolute;
       background: #f8f8f8;
       content: "";
-      width: 400px;
+      width: 300px;
       height: 2px;
       top: 50%;
-      left: 15%;
+      left: 10%;
     }
     &:after {
       position: absolute;
       background: #f8f8f8;
-      width: 400px;
+      width: 300px;
       height: 2px;
       content: "";
       top: 50%;
-      right: 15%;
+      right: 10%;
     }
   }
   h3 {
     text-align: left;
     margin-bottom: 30px;
   }
+  .textar {
+    width: 100%;
+    text-align: left;
+    label {
+      float: left;
+    }
+  }
   .iptBox {
     margin-bottom: 34px;
     display: flex;
     flex-wrap: wrap;
     div {
-      width: 100%;
+      margin: auto;
+      text-align: left;
+      width: 50%;
       margin-bottom: 10px;
+      input {
+        width: 85%;
+      }
       label {
         margin: auto;
         text-align: left;
@@ -787,6 +992,12 @@ export default {
     color: #999;
     line-height: 1;
     clear: both;
+    &:hover {
+      background: rgba(0, 171, 245, 1);
+      border-radius: 20px;
+      color: #fff;
+      border: 0;
+    }
   }
 }
 @keyframes warn {
